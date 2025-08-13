@@ -14,7 +14,7 @@ public class Starter implements Directions{
     // The line below creates a Robot that we will refer to as rob
     // Find out what the numbers and direction do!
     // Put rob in a better location for your initials.
-    Robot rob = new Robot(15,8,West,9);
+    Robot rob = new Robot(15,8,West,30);
 
     // Want a second robot?  No prob.  They are cheap :)
     //Robot dude = new Robot(7,5,West,9);
@@ -30,18 +30,17 @@ public class Starter implements Directions{
     rob.putBeeper();
     rob.move();
     rob.putBeeper();
-    //Second line short
+    rob.move();
+    rob.putBeeper();
+    //Second line
     rob.turnLeft();
     rob.move();
     rob.putBeeper();
-    //Turn right
     rob.turnLeft();
     rob.turnLeft();
     rob.turnLeft();
-    //third line short
     rob.move();
     rob.putBeeper();
-    //fourth line side
     rob.turnLeft();
     rob.move();
     rob.putBeeper();
