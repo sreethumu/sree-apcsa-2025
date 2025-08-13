@@ -19,7 +19,6 @@ public class Starter implements Directions{
     // Want a second robot?  No prob.  They are cheap :)
     //Robot dude = new Robot(7,5,West,9);
     // examples of commands you can invoke on a Robot
-    rob.move();// move one step in the direction it is facing
 
 
     // starting the letter S
@@ -31,17 +30,18 @@ public class Starter implements Directions{
     rob.putBeeper();
     rob.move();
     rob.putBeeper();
-    rob.move();
-    rob.putBeeper();
-    //Second line
+    //Second line short
     rob.turnLeft();
     rob.move();
     rob.putBeeper();
+    //Turn right
     rob.turnLeft();
     rob.turnLeft();
     rob.turnLeft();
+    //third line short
     rob.move();
     rob.putBeeper();
+    //fourth line side
     rob.turnLeft();
     rob.move();
     rob.putBeeper();
