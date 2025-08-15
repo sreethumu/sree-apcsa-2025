@@ -9,14 +9,14 @@ public class Starter implements Directions{
     World.setVisible(true);// allows us to see the run output
     // the bigger the street, the farther north
     World.setSize(20,20);
-    World.setDelay(20);
+    World.setDelay(5);
 
     // The line below creates a Robot that we will refer to as rob
     // Find out what the numbers and direction do!
     // Put rob in a better location for your initials.
     Robot rob = new Robot(15,8,West,100);
     Robot horiz = new Robot(15,12,East,100);
-    Robot vert = new Robot(15,8,West,100);
+    Robot vert = new Robot(15, 16, South,100);
     // Want a second robot?  No prob.  They are cheap :)
     //Robot dude = new Robot(7,5,West,9);
     // examples of commands you can invoke on a Robot
@@ -99,8 +99,46 @@ public class Starter implements Directions{
     rob.putBeeper();
     rob.move();
     rob.putBeeper();
+    rob.move();
+    rob.putBeeper();
+    rob.move();
+    rob.putBeeper();
     // done with the line, now on the curve
     // rob.turnLeft();
 
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+    horiz.move();
+    horiz.putBeeper();
+
+
+    //vert line
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
+    vert.putBeeper();
+    vert.move();
   }
 }
