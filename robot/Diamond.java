@@ -66,7 +66,7 @@ public class Diamond implements Directions{
         
         //
         //make diagonal
-        for (let i = 0; i<7; i++){
+        for (int i = 0; i<6; i++){
             diam.turnLeft();
             diam.turnLeft();
             diam.turnLeft();
@@ -79,7 +79,7 @@ public class Diamond implements Directions{
         
         
         //kill robot
-        for (let i = 0; i<10; i++){
+        for (int i = 0; i<10; i++){
             diam.move();
         }
 
@@ -132,28 +132,21 @@ public class Diamond implements Directions{
         diam1.move();
         diam1.putBeeper();
         ////copy and paste
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
+        
         //make diagonal
-        for (let i = 0; i<7; i++){
-            diam1.turnLeft();
-            diam1.turnLeft();
+        for (int i = 0; i<5; i++){
             diam1.turnLeft();
             diam1.move();
             diam1.putBeeper();
+            diam1.turnLeft();
+            diam1.turnLeft();
             diam1.turnLeft();
             diam1.move();
             diam1.putBeeper();
         }
         
         //kill robot
-        for (let i = 0; i<10; i++){
+        for (int i = 0; i<10; i++){
             diam1.move();
         }
         
