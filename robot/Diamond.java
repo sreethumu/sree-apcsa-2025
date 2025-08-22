@@ -63,69 +63,26 @@ public class Diamond implements Directions{
         diam.move();
         diam.putBeeper();
         //copy and paste this
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
+        
         //
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
-        diam.turnLeft();
-        diam.move();
-        diam.putBeeper();
+        //make diagonal
+        for (let i = 0; i<7; i++){
+            diam.turnLeft();
+            diam.turnLeft();
+            diam.turnLeft();
+            diam.move();
+            diam.putBeeper();
+            diam.turnLeft();
+            diam.move();
+            diam.putBeeper();
+        }
+        
+        
         //kill robot
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
-        diam.move();
+        for (let i = 0; i<10; i++){
+            diam.move();
+        }
+
         //left side diamond
         diam1.putBeeper();
         diam1.move();
@@ -183,53 +140,23 @@ public class Diamond implements Directions{
         diam1.turnLeft();
         diam1.move();
         diam1.putBeeper();
-        //
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.turnLeft();
-        diam1.move();
-        diam1.putBeeper();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-        diam1.move();
-
+        //make diagonal
+        for (let i = 0; i<7; i++){
+            diam1.turnLeft();
+            diam1.turnLeft();
+            diam1.turnLeft();
+            diam1.move();
+            diam1.putBeeper();
+            diam1.turnLeft();
+            diam1.move();
+            diam1.putBeeper();
+        }
+        
+        //kill robot
+        for (let i = 0; i<10; i++){
+            diam1.move();
+        }
+        
         //Square
         /*
         rob.putBeeper();
