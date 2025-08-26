@@ -35,7 +35,17 @@ class Math {
     //For now we are just going to work with primitive
 
     //Create 3 variables of each of the above types (USE GOOD CODING PRACTICE WHEN CREATING THE VARIABLES
+      int age = 15;
+      int grade = 10;
+      int year = 2025;
 
+      double money = 8.75;
+      double shoeSize = 9.5;
+      double height = 5.8;
+
+      boolean isIndian = true;
+      boolean likesBasketball = true;
+      boolean likesAPWorld = false;
 
 
 
@@ -46,18 +56,29 @@ class Math {
     //+ - * / %
 
     //Try doing some math operations with numbers. How can we check to see if the math worked?
+    System.out.println(age*2);
+    System.out.println(money/24);
 
     //Create codes that will print the following:
 
     //Odd integers from 1 to 100, inclusive of both
-
+      for(int i=1;i<=100;i+=2){
+        System.out.println(i);
+      }
+      System.out.println(100);
 
 
     //All multiples of 3 from 1 to 100
+    for(int i=1; i<=33; i++){
+      System.out.println(3*i);
+    }
 
 
 
 
     //Starting at 1000, print on the same line (with a - [hypthen] between each) all of the numbers that end in 0 going down to 0
+    for(int i=1000; i>=0; i-=100){
+      System.out.print(i +"-");
+    }
   }
 }
