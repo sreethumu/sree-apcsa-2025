@@ -66,7 +66,7 @@ public class Diamond implements Directions{
         
         //
         //make diagonal
-        for (int i = 0; i<6; i++){
+        for (double i = 0; i<3.0; i+=0.5){
             diam.turnLeft();
             diam.turnLeft();
             diam.turnLeft();

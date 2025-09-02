@@ -76,5 +76,12 @@ class Math {
     for(int i=1000; i>=0; i-=100){
       System.out.print(i +"-");
     }
+    
+    for(double i=0; i<=2.5; i+=0.5){
+      System.out.println(i);
+    }
+
+   
+
   }
 }
