@@ -4,6 +4,7 @@ import kareltherobot.*;
 
 public class Roomba implements Directions {
 
+
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
@@ -17,7 +18,6 @@ public class Roomba implements Directions {
 
 	// declared here so it is visible in all the methods!
 	private Robot roomba;
-
 	// You will need to add many variables!!
 
 
@@ -34,7 +34,7 @@ public class Roomba implements Directions {
 		 * and cleans up all piles of beepers. Think about ways you can break this
 		 * large, complex task into smaller, easier to solve problems.
 		 */
-
+		Robot roomba = new Robot(8,8,West,100);
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
 		roomba.move();
