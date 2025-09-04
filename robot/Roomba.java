@@ -28,6 +28,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
+		World.setDelay(10);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -35,13 +36,85 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 		Robot roomba = new Robot(8,8,West,100);
+		
+		
+		
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
 		roomba.move();
+		turnRight(roomba);
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		roomba.move();
+		turnRight(roomba);
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.move();
+		turnRight(roomba);
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		turnRight(roomba);
+		roomba.move();
+		roomba.move();
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		turnRight(roomba);
+		roomba.move();
+		roomba.move();
+		turnRight(roomba);
+		roomba.move();
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.turnLeft();
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		turnRight(roomba);
+		roomba.move();
+		roomba.move();
+		roomba.turnLeft();
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		turnRight(roomba);
+		roomba.move();
+		while(roomba.nextToABeeper()){
+			roomba.pickBeeper();
+		}
+		roomba.move();
 
+
+
+
+		
 
 		int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
+	}
+	public static void turnRight(Robot roomba){
+			roomba.turnLeft(); 
+			roomba.turnLeft(); 
+			roomba.turnLeft(); 
 	}
 }
