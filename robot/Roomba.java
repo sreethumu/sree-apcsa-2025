@@ -35,13 +35,53 @@ public class Roomba implements Directions {
 		 * and cleans up all piles of beepers. Think about ways you can break this
 		 * large, complex task into smaller, easier to solve problems.
 		 */
-		Robot roomba = new Robot(8,8,West,100);
+		//Robot roomba = new Robot(8,8,West,100);
+		Robot roomba = new Robot(7, 6, East, 100);
+		/*for(int i=0;i<=10000000; i++){
+			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
+				roomba.move();
+			}
+			while(roomba.nextToABeeper()){
+				roomba.pickBeeper();
+			}
+			if(!roomba.frontIsClear() && roomba.facingEast()){
+				roomba.turnLeft();
+				roomba.move();
+				roomba.turnLeft();
+			}
+			if(!roomba.frontIsClear() && roomba.facingWest()){
+				turnRight(roomba);
+				roomba.move();
+				turnRight(roomba);
+			}
 		
+		}*/
 		
+		while(roomba.frontIsClear()){
+			roomba.move();
+			while(roomba.nextToABeeper()){
+				roomba.pickBeeper();
+			}
+			if(!roomba.frontIsClear() && roomba.facingEast()){
+				roomba.turnLeft();
+			}
+			if(!roomba.frontIsClear() && roomba.facingWest()){
+				roomba.turnLeft();
+			}
+			if(!roomba.frontIsClear() && roomba.facingNorth()){
+				roomba.turnLeft();
+			}
+			if(!roomba.frontIsClear() && roomba.facingSouth()){
+				roomba.turnLeft();
+			}
+			
+
+
+		}
 		
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
-		roomba.move();
+		/*roomba.move();
 		turnRight(roomba);
 		roomba.move();
 		while(roomba.nextToABeeper()){
@@ -101,7 +141,7 @@ public class Roomba implements Directions {
 		while(roomba.nextToABeeper()){
 			roomba.pickBeeper();
 		}
-		roomba.move();
+		roomba.move();*/
 
 
 
