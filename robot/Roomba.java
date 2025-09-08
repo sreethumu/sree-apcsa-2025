@@ -8,7 +8,8 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/basicRoom.wld";
+		//String worldName = "robot/basicRoom.wld";
+		String worldName = "robot/TestWorld-1.wld";
 
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
@@ -28,7 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(10);
+		World.setDelay(1);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -36,13 +37,44 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 		//Robot roomba = new Robot(8,8,West,100);
-		Robot roomba = new Robot(7, 6, East, 100);
+		int startingY = 26;
+		int startingX = 11;
+		Robot roomba = new Robot(26, 11, East, 100);
+		int max = 0;
+		while(roomba.frontIsClear()){
+			roomba.move();
+			startingX += 1;
+			int max2 = 0;
+			while(roomba.nextToABeeper()){
+				roomba.pickBeeper();
+				max2 += 1;
+				if(max2 >= max){
+					max = max2;
+				}
+			}
+			if(!roomba.frontIsClear() && roomba.facingEast()){
+				roomba.turnLeft();
+				roomba.move();
+				roomba.turnLeft();
+			}
+			if(!roomba.frontIsClear() && roomba.facingWest()){
+				turnRight(roomba);
+				roomba.move();
+				startingY += 1;
+				turnRight(roomba);
+			}
+
+		}
+		System.out.println(max);
+
 		/*for(int i=0;i<=10000000; i++){
+			
 			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
 				roomba.move();
 			}
 			while(roomba.nextToABeeper()){
 				roomba.pickBeeper();
+				max += 1;
 			}
 			if(!roomba.frontIsClear() && roomba.facingEast()){
 				roomba.turnLeft();
@@ -78,9 +110,7 @@ public class Roomba implements Directions {
 
 
 		}*/
-		for(int i=6; i>=0; i-=1){
-			roomba.move();
-		}
+		
 
 		
 		// the line below causes a null pointer exception
