@@ -29,7 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(20);
+		World.setDelay(1);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -49,7 +49,12 @@ public class Roomba implements Directions {
 		int max = 0;
 		while(roomba.frontIsClear()){
 			roomba.move();
-			startingX += 1;
+			if(roomba.facingEast()){
+				startingX += 1;
+			}
+			if(roomba.facingWest()){
+				startingX -= 1;
+			}
 			int max2 = 0;
 			while(roomba.nextToABeeper()){
 				roomba.pickBeeper();
@@ -75,7 +80,6 @@ public class Roomba implements Directions {
 
 		}
 		System.out.println("Max number of beepers was " + max + " at the coordinates (" + maxX + "," + maxY + ")");
-		Robot maxpoint = new Robot(maxY, maxX, East, 20);
 		/*for(int i=0;i<=10000000; i++){
 			
 			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
