@@ -8,8 +8,7 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/basicRoom.wld";
-		//String worldName = "robot/TestWorld-1.wld";
+		String worldName = "robot/TestWorld-1.wld";
 
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
@@ -37,15 +36,11 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 		//Robot roomba = new Robot(8,8,West,100);
-		//int startingY = 26;
-		//int startingX = 11;
-		int startingY = 7;
-		int startingX = 6;
+		int startingY = 26;
+		int startingX = 11;
 		int maxX = 0;
 		int maxY = 0;
-		//Robot roomba = new Robot(26, 11, East, 100);
-		Robot roomba = new Robot(7, 6, East, 100);
-
+		Robot roomba = new Robot(26, 11, East, 100);
 		int max = 0;
 		while(roomba.frontIsClear()){
 			roomba.move();
@@ -80,6 +75,7 @@ public class Roomba implements Directions {
 
 		}
 		System.out.println("Max number of beepers was " + max + " at the coordinates (" + maxX + "," + maxY + ")");
+		Robot maxpoint = new Robot(maxY, maxX, North, 0);
 		/*for(int i=0;i<=10000000; i++){
 			
 			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
