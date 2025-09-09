@@ -42,6 +42,8 @@ public class Roomba implements Directions {
 		int maxY = 0;
 		Robot roomba = new Robot(26, 11, East, 100);
 		int max = 0;
+		int totalPiles = 0;
+		int totalBeepers = 0;
 		while(roomba.frontIsClear()){
 			roomba.move();
 			if(roomba.facingEast()){
@@ -53,7 +55,11 @@ public class Roomba implements Directions {
 			int max2 = 0;
 			while(roomba.nextToABeeper()){
 				roomba.pickBeeper();
+				totalBeepers += 1;
 				max2 += 1;
+				if(max2 == 1){
+					totalPiles += 1;
+				}
 				if(max2 >= max){
 					max = max2;
 					maxX = startingX;
@@ -75,7 +81,8 @@ public class Roomba implements Directions {
 
 		}
 		System.out.println("Max number of beepers was " + max + " at the coordinates (" + maxX + "," + maxY + ")");
-		Robot maxpoint = new Robot(maxY, maxX, North, 0);
+		System.out.println("Total amount of piles are: " + totalPiles);
+		System.out.println("Total number of beepers is " + totalBeepers);
 		/*for(int i=0;i<=10000000; i++){
 			
 			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
@@ -191,7 +198,7 @@ public class Roomba implements Directions {
 
 		
 
-		int totalBeepers = 0; // Need to move this somewhere else.
+		
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
@@ -199,5 +206,8 @@ public class Roomba implements Directions {
 			roomba.turnLeft(); 
 			roomba.turnLeft(); 
 			roomba.turnLeft(); 
+	}
+	public static void cleanUp(){
+
 	}
 }
