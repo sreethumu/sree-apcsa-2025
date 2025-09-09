@@ -8,8 +8,8 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		//String worldName = "robot/basicRoom.wld";
-		String worldName = "robot/TestWorld-1.wld";
+		String worldName = "robot/basicRoom.wld";
+		//String worldName = "robot/TestWorld-1.wld";
 
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
@@ -29,7 +29,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(1);
+		World.setDelay(20);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -37,9 +37,15 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 		//Robot roomba = new Robot(8,8,West,100);
-		int startingY = 26;
-		int startingX = 11;
-		Robot roomba = new Robot(26, 11, East, 100);
+		//int startingY = 26;
+		//int startingX = 11;
+		int startingY = 7;
+		int startingX = 6;
+		int maxX = 0;
+		int maxY = 0;
+		//Robot roomba = new Robot(26, 11, East, 100);
+		Robot roomba = new Robot(7, 6, East, 100);
+
 		int max = 0;
 		while(roomba.frontIsClear()){
 			roomba.move();
@@ -50,11 +56,14 @@ public class Roomba implements Directions {
 				max2 += 1;
 				if(max2 >= max){
 					max = max2;
+					maxX = startingX;
+					maxY = startingY;
 				}
 			}
 			if(!roomba.frontIsClear() && roomba.facingEast()){
 				roomba.turnLeft();
 				roomba.move();
+				startingY+=1;
 				roomba.turnLeft();
 			}
 			if(!roomba.frontIsClear() && roomba.facingWest()){
@@ -65,8 +74,8 @@ public class Roomba implements Directions {
 			}
 
 		}
-		System.out.println(max);
-
+		System.out.println("Max number of beepers was " + max + " at the coordinates (" + maxX + "," + maxY + ")");
+		Robot maxpoint = new Robot(maxY, maxX, East, 20);
 		/*for(int i=0;i<=10000000; i++){
 			
 			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
