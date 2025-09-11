@@ -8,10 +8,13 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/basicRoom.wld";
+		String worldName = "robot/TestWorld-2.wld";
 
 		Roomba cleaner = new Roomba();
-		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
+		//7, 6
+		//25, 11
+		//5, 6
+		int totalBeepers = cleaner.cleanRoom(worldName, 5, 6);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 
 	}
@@ -48,9 +51,10 @@ public class Roomba implements Directions {
 		boolean firstRound = true;
 		int width = 1;
 		int height = 0;
-
+		boolean roombaWorking = true;
 		//Code runs until roomba gets stuck in top left corner
-		while(roomba.frontIsClear()){
+		while(roombaWorking){
+			while(roomba.frontIsClear()){
 			roomba.move();
 
 			//To calculate area, find width
@@ -87,24 +91,39 @@ public class Roomba implements Directions {
 				}
 			}
 
-			//U-turn
+			//U-turn and find height
 			if(!roomba.frontIsClear() && roomba.facingEast()){
 				roomba.turnLeft();
-				roomba.move();
-				height += 1;
-				roomba.turnLeft();
-				startingY += 1;
+				if(!roomba.frontIsClear()){
+					roombaWorking = false;
+					height += 1;
+				} else{
+					roomba.move();
+					startingY += 1;
+					height += 1;
+					roomba.turnLeft();
+				}
+				
+				
 
 			}
 			if(!roomba.frontIsClear() && roomba.facingWest()){
 				turnRight(roomba);
-				roomba.move();
-				height += 1;
-				startingY += 1;
-				turnRight(roomba);
+				if(!roomba.frontIsClear()){
+					roombaWorking = false;
+					height += 1;
+				} else {
+					roomba.move();
+					startingY += 1;
+					height += 1;
+					turnRight(roomba);
+				}
+				
 			}
 
 		}
+		}
+		
 
 		//Print all the requirements
 		totalArea = height*width;
@@ -115,125 +134,13 @@ public class Roomba implements Directions {
 		System.out.println("The area of the box is: " + totalArea);
 		System.out.println("The percentage dirty is: " + (double)totalPiles/totalArea);
 		System.out.println("The average pile size is: " + (double) totalBeepers/totalPiles);
-		/*for(int i=0;i<=10000000; i++){
-			
-			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
-				roomba.move();
-			}
-			while(roomba.nextToABeeper()){
-				roomba.pickBeeper();
-				max += 1;
-			}
-			if(!roomba.frontIsClear() && roomba.facingEast()){
-				roomba.turnLeft();
-				roomba.move();
-				roomba.turnLeft();
-			}
-			if(!roomba.frontIsClear() && roomba.facingWest()){
-				turnRight(roomba);
-				roomba.move();
-				turnRight(roomba);
-			}
-		
-		}*/
-		
-		/*while(roomba.frontIsClear()){
-			roomba.move();
-			while(roomba.nextToABeeper()){
-				roomba.pickBeeper();
-			}
-			if(!roomba.frontIsClear() && roomba.facingEast()){
-				roomba.turnLeft();
-			}
-			if(!roomba.frontIsClear() && roomba.facingWest()){
-				roomba.turnLeft();
-			}
-			if(!roomba.frontIsClear() && roomba.facingNorth()){
-				roomba.turnLeft();
-			}
-			if(!roomba.frontIsClear() && roomba.facingSouth()){
-				roomba.turnLeft();
-			}
-			
-
-
-		}*/
-		
-
-		
-		// the line below causes a null pointer exception
-		// what is that and why are we getting it?
-		/*roomba.move();
-		turnRight(roomba);
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		roomba.move();
-		turnRight(roomba);
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.move();
-		turnRight(roomba);
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		turnRight(roomba);
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		turnRight(roomba);
-		roomba.move();
-		roomba.move();
-		turnRight(roomba);
-		roomba.move();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		turnRight(roomba);
-		roomba.move();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		turnRight(roomba);
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
-		}
-		roomba.move();*/
-
-
-
-
-		
-
-		
+		System.out.println(height);
+		System.out.println(width);
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
+
+	//Turn right method
 	public static void turnRight(Robot roomba){
 			roomba.turnLeft(); 
 			roomba.turnLeft(); 
