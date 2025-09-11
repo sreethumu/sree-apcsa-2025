@@ -21,7 +21,7 @@ public class Roomba implements Directions {
 	// You will need to add many variables!!
 
 
-	public int cleanRoom(String worldName, int startX, int startY) {
+	public int cleanRoom(String worldName, int startY, int startX) {
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
@@ -36,28 +36,32 @@ public class Roomba implements Directions {
 		 * large, complex task into smaller, easier to solve problems.
 		 */
 		//Robot roomba = new Robot(8,8,West,100);
-		int startingY = 7;
-		int startingX = 6;
+		int startingY = startY;
+		int startingX = startX;
 		int maxX = 0;
 		int maxY = 0;
-		Robot roomba = new Robot(startingY, startingX, East, 100);
+		Robot roomba = new Robot(startY, startX, East, 100);
 		int max = 0;
 		int totalPiles = 0;
 		int totalBeepers = 0;
 		int totalArea = 0;
 		boolean firstRound = true;
 		int width = 1;
-		int height = 1;
+		int height = 0;
 
+		//Code runs until roomba gets stuck in top left corner
 		while(roomba.frontIsClear()){
 			roomba.move();
-			while(firstRound){
-				width += 1;
+
+			//To calculate area, find width
+			if(firstRound){
+				width ++;
 				if(!roomba.frontIsClear()){
 					firstRound = false;
 				}
-				firstRound = false;
 			}
+
+			//X coordinate of roomba
 			if(roomba.facingEast()){
 				startingX += 1;
 			}
@@ -65,15 +69,17 @@ public class Roomba implements Directions {
 				startingX -= 1;
 			}
 			int max2 = 0;
+
+			//Pick up beepers
 			while(roomba.nextToABeeper()){
 				roomba.pickBeeper();
 				totalBeepers += 1;
 				max2 += 1;
-				
+				//Count number of piles
 				if(max2 == 1){
 					totalPiles += 1;
 				}
-
+				//Find max beepers
 				if(max2 >= max){
 					max = max2;
 					maxX = startingX;
@@ -81,11 +87,13 @@ public class Roomba implements Directions {
 				}
 			}
 
+			//U-turn
 			if(!roomba.frontIsClear() && roomba.facingEast()){
 				roomba.turnLeft();
 				roomba.move();
 				height += 1;
 				roomba.turnLeft();
+				startingY += 1;
 
 			}
 			if(!roomba.frontIsClear() && roomba.facingWest()){
@@ -97,13 +105,16 @@ public class Roomba implements Directions {
 			}
 
 		}
+
+		//Print all the requirements
+		totalArea = height*width;
 		System.out.println("Max number of beepers was " + max + " at the coordinates (" + maxX + "," + maxY + ")");
+		System.out.println("This is " + (maxY - startY) + " up and " + (maxX - startX) + " right from the left corner of the room." );
 		System.out.println("Total number of beepers is " + totalBeepers);
+		System.out.println("Total number of piles is " + totalPiles);
 		System.out.println("The area of the box is: " + totalArea);
 		System.out.println("The percentage dirty is: " + (double)totalPiles/totalArea);
 		System.out.println("The average pile size is: " + (double) totalBeepers/totalPiles);
-		System.out.println(height);
-		System.out.println(width);
 		/*for(int i=0;i<=10000000; i++){
 			
 			while(!roomba.nextToABeeper() && roomba.frontIsClear()){
