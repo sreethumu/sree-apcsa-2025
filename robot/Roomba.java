@@ -8,13 +8,14 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/TestWorld-2.wld";
+		String worldName = "robot/TestWorld-1.wld";
 
 		Roomba cleaner = new Roomba();
 		//7, 6
 		//25, 11
 		//5, 6
-		int totalBeepers = cleaner.cleanRoom(worldName, 5, 6);
+		//26, 101
+		int totalBeepers = cleaner.cleanRoom(worldName, 25, 11);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 
 	}
@@ -31,7 +32,7 @@ public class Roomba implements Directions {
 
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(1);
+		World.setDelay(0);
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -127,6 +128,9 @@ public class Roomba implements Directions {
 
 		//Print all the requirements
 		totalArea = height*width;
+		System.out.println("  ");
+		System.out.println("  ");
+		System.out.println("  ");
 		System.out.println("Max number of beepers was " + max + " at the coordinates (" + maxX + "," + maxY + ")");
 		System.out.println("This is " + (maxY - startY) + " up and " + (maxX - startX) + " right from the left corner of the room." );
 		System.out.println("Total number of beepers is " + totalBeepers);
@@ -134,8 +138,6 @@ public class Roomba implements Directions {
 		System.out.println("The area of the box is: " + totalArea);
 		System.out.println("The percentage dirty is: " + (double)totalPiles/totalArea);
 		System.out.println("The average pile size is: " + (double) totalBeepers/totalPiles);
-		System.out.println(height);
-		System.out.println(width);
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
