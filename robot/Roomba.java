@@ -8,14 +8,14 @@ public class Roomba implements Directions {
 	// Main method to make this self-contained
 	public static void main(String[] args) {
 		// LEAVE THIS ALONE!!!!!!
-		String worldName = "robot/TestWorld-1.wld";
+		String worldName = "robot/finalTestWorld2024.wld";
 
 		Roomba cleaner = new Roomba();
 		//7, 6
 		//25, 11
 		//5, 6
 		//26, 101
-		int totalBeepers = cleaner.cleanRoom(worldName, 25, 11);
+		int totalBeepers = cleaner.cleanRoom(worldName, 26, 101);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 
 	}
@@ -46,6 +46,7 @@ public class Roomba implements Directions {
 		int maxY = 0;
 		Robot roomba = new Robot(startY, startX, East, 100);
 		int max = 0;
+		int max2 = 0;
 		int totalPiles = 0;
 		int totalBeepers = 0;
 		int totalArea = 0;
@@ -55,7 +56,21 @@ public class Roomba implements Directions {
 		boolean roombaWorking = true;
 		//Code runs until roomba gets stuck in top left corner
 		while(roombaWorking){
-			while(roomba.frontIsClear()){
+			while(roomba.nextToABeeper()){
+				roomba.pickBeeper();
+				totalBeepers += 1;
+				max2 += 1;
+				//Count number of piles
+				if(max2 == 1){
+					totalPiles += 1;
+				}
+				//Find max beepers
+				if(max2 >= max){
+					max = max2;
+					maxX = startingX;
+					maxY = startingY;
+				}
+			}
 			roomba.move();
 
 			//To calculate area, find width
@@ -73,24 +88,10 @@ public class Roomba implements Directions {
 			if(roomba.facingWest()){
 				startingX -= 1;
 			}
-			int max2 = 0;
+			max2 = 0;
 
 			//Pick up beepers
-			while(roomba.nextToABeeper()){
-				roomba.pickBeeper();
-				totalBeepers += 1;
-				max2 += 1;
-				//Count number of piles
-				if(max2 == 1){
-					totalPiles += 1;
-				}
-				//Find max beepers
-				if(max2 >= max){
-					max = max2;
-					maxX = startingX;
-					maxY = startingY;
-				}
-			}
+			
 
 			//U-turn and find height
 			if(!roomba.frontIsClear() && roomba.facingEast()){
@@ -112,6 +113,21 @@ public class Roomba implements Directions {
 				turnRight(roomba);
 				if(!roomba.frontIsClear()){
 					roombaWorking = false;
+					while(roomba.nextToABeeper()){
+						roomba.pickBeeper();
+					totalBeepers += 1;
+					max2 += 1;
+					//Count number of piles
+					if(max2 == 1){
+						totalPiles += 1;
+					}
+					//Find max beepers
+					if(max2 >= max){
+						max = max2;
+						maxX = startingX;
+						maxY = startingY;
+						}
+					}
 					height += 1;
 				} else {
 					roomba.move();
@@ -122,7 +138,7 @@ public class Roomba implements Directions {
 				
 			}
 
-		}
+		
 		}
 		
 
