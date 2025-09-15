@@ -2,7 +2,9 @@ package robot;
 
 import kareltherobot.*;
 
+
 public class Roomba implements Directions {
+
 
 
 	// Main method to make this self-contained
@@ -46,7 +48,7 @@ public class Roomba implements Directions {
 		int maxY = 0;
 		Robot roomba = new Robot(startY, startX, East, 100);
 		int max = 0;
-		int max2 = 0;
+		int pileSize = 0;
 		int totalPiles = 0;
 		int totalBeepers = 0;
 		int totalArea = 0;
@@ -56,17 +58,19 @@ public class Roomba implements Directions {
 		boolean roombaWorking = true;
 		//Code runs until roomba gets stuck in top left corner
 		while(roombaWorking){
+			
+			//Look for and pick up beepers
 			while(roomba.nextToABeeper()){
 				roomba.pickBeeper();
 				totalBeepers += 1;
-				max2 += 1;
+				pileSize += 1;
 				//Count number of piles
-				if(max2 == 1){
+				if(pileSize == 1){
 					totalPiles += 1;
 				}
 				//Find max beepers
-				if(max2 >= max){
-					max = max2;
+				if(pileSize >= max){
+					max = pileSize;
 					maxX = startingX;
 					maxY = startingY;
 				}
@@ -88,9 +92,9 @@ public class Roomba implements Directions {
 			if(roomba.facingWest()){
 				startingX -= 1;
 			}
-			max2 = 0;
+			pileSize = 0;
 
-			//Pick up beepers
+			
 			
 
 			//U-turn and find height
@@ -115,15 +119,15 @@ public class Roomba implements Directions {
 					roombaWorking = false;
 					while(roomba.nextToABeeper()){
 						roomba.pickBeeper();
-					totalBeepers += 1;
-					max2 += 1;
-					//Count number of piles
-					if(max2 == 1){
-						totalPiles += 1;
-					}
-					//Find max beepers
-					if(max2 >= max){
-						max = max2;
+						totalBeepers += 1;
+						pileSize += 1;
+						//Count number of piles
+						if(pileSize == 1){
+							totalPiles += 1;
+						}
+						//Find max beepers
+						if(pileSize >= max){
+						max = pileSize;
 						maxX = startingX;
 						maxY = startingY;
 						}
@@ -160,10 +164,11 @@ public class Roomba implements Directions {
 
 	//Turn right method
 	public static void turnRight(Robot roomba){
-			roomba.turnLeft(); 
-			roomba.turnLeft(); 
-			roomba.turnLeft(); 
+		roomba.turnLeft(); 
+		roomba.turnLeft(); 
+		roomba.turnLeft(); 
 	}
+
 	public static void cleanUp(){
 
 	}
