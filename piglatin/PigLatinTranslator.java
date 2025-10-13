@@ -16,7 +16,7 @@ public class PigLatinTranslator {
         System.out.println("  -> translate('" + input + "')");
 
         String result = "";
-
+        
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
         // It may be made up of many words.
@@ -30,7 +30,18 @@ public class PigLatinTranslator {
         System.out.println("  -> translateWord('" + input + "')");
 
         String result = "";
-
+        String first = input.substring(0,1);
+        boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
+        String consonant = "";
+        int num = 1;
+        if(vowel){
+            result += "ay";
+        }else{
+            while(!vowel){
+                consonant += input.substring(0,1);
+                
+            }
+        }
         // TODO: Replace this code to correctly translate a single word.
         // Start here first!
         // This is the first place to work.
