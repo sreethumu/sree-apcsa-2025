@@ -32,16 +32,18 @@ public class PigLatinTranslator {
         String result = input;
         String first = input.substring(0,1);
         boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
-        String consonant = "";
-        int num = 1;
+
         if(vowel){
             result += "ay";
         }else{
-            num=1;
+            
             while(!vowel){
                 result = result.substring(1, result.length()) + result.substring(0,1);
                 first = result.substring(0,1);
                 vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
+                if(!vowel){
+                    break;
+                }
             }
             result += "ay";
         }
