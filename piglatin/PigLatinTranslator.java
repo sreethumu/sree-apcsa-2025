@@ -29,7 +29,7 @@ public class PigLatinTranslator {
     private static String translateWord(String input) {
         System.out.println("  -> translateWord('" + input + "')");
 
-        String result = "";
+        String result = input;
         String first = input.substring(0,1);
         boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
         String consonant = "";
@@ -37,15 +37,18 @@ public class PigLatinTranslator {
         if(vowel){
             result += "ay";
         }else{
+            num=1;
             while(!vowel){
-                consonant += input.substring(0,1);
-                
+                result = result.substring(1, result.length()) + result.substring(0,1);
+                first = result.substring(0,1);
+                vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
             }
+            result += "ay";
         }
         // TODO: Replace this code to correctly translate a single word.
         // Start here first!
         // This is the first place to work.
-        result = input; // delete this line
+        // delete this line
 
         return result;
     }
