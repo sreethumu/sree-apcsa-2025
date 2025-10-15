@@ -31,22 +31,33 @@ public class PigLatinTranslator {
 
         String result = input;
         String first = input.substring(0,1);
-        boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
+        boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals("i") || first.equals("I") || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
 
         if(vowel){
             result += "ay";
         }else{
-            
             while(!vowel){
                 result = result.substring(1, result.length()) + result.substring(0,1);
-                first = result.substring(0,1);
-                vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals('i') || first.equals('I') || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
-                if(!vowel){
-                    break;
-                }
+                String first1 = result.substring(0,1);
+                vowel = first1.equals("a") || first1.equals("A") || first1.equals("e") || first1.equals("E") || first1.equals("i") || first1.equals("I") || first1.equals("o") || first1.equals("O") || first1.equals("u") || first1.equals("U");
             }
             result += "ay";
         }
+        for(int i=0; i<input.length(); i++){
+            String letter = result.substring(i, i+1);
+            int ascii = letter.compareTo(" ") + 32;
+            int newLetter = ascii;
+            if(i==0 && ascii>97){
+                newLetter = ascii - 32;
+            }else if(i>0 && ascii<97){
+                newLetter = ascii + 32;
+            }else{
+                break;
+            }
+            result = result.substring(0, i) + (char) newLetter + result.substring(i+1, result.length());
+        }
+
+        
         // TODO: Replace this code to correctly translate a single word.
         // Start here first!
         // This is the first place to work.
