@@ -30,9 +30,12 @@ public class PigLatinTranslator {
         System.out.println("  -> translateWord('" + input + "')");
 
         String result = input;
+        if(result.length()==0){
+            return result;
+        }
         String first = input.substring(0,1);
         boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals("i") || first.equals("I") || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
-
+        //Translate
         if(vowel){
             result += "ay";
         }else{
@@ -43,26 +46,40 @@ public class PigLatinTranslator {
             }
             result += "ay";
         }
-        for(int i=0; i<input.length(); i++){
-            String letter = result.substring(i, i+1);
-            int ascii = letter.compareTo(" ") + 32;
-            int newLetter = ascii;
-            if(i==0 && ascii>97){
-                newLetter = ascii - 32;
-            }else if(i>0 && ascii<97){
-                newLetter = ascii + 32;
-            }else{
-                break;
-            }
-            result = result.substring(0, i) + (char) newLetter + result.substring(i+1, result.length());
+        //Check for capitalization
+        if(first.compareTo(" ") + 32 <97){
+            result = capitalization(input, result);
         }
+        
 
         
+        
+
         // TODO: Replace this code to correctly translate a single word.
         // Start here first!
         // This is the first place to work.
         // delete this line
 
+        return result;
+    }
+
+    private static String capitalization(String input, String result){
+        for(int i=0; i<input.length(); i++){
+            String letter = result.substring(i, i+1);
+            int ascii = letter.compareTo(" ") + 32;
+            int newLetter = ascii;
+            if(i==0 && ascii>96){
+                newLetter = ascii - 32;
+            }else if(i>0 && ascii<97){
+                newLetter = ascii + 32;
+            }
+            result = result.substring(0, i) + (char) newLetter + result.substring(i+1, result.length());
+            
+        }
+        int period = result.indexOf("N");
+        if(period > 0){
+            result = result.substring(0,period) + result.substring(period + 1, result.length()) + ".";
+        }
         return result;
     }
 
