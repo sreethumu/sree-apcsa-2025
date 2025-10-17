@@ -1,5 +1,7 @@
 package piglatin;
 
+import java.util.Scanner;
+
 public class PigLatinTranslator {
     public static Book translate(Book input) {
         Book translatedBook = new Book();
@@ -35,17 +37,27 @@ public class PigLatinTranslator {
         }
         String first = input.substring(0,1);
         boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals("i") || first.equals("I") || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
+        Scanner sc = new Scanner(input);
+        String finalResult = "";
         //Translate
-        if(vowel){
-            result += "ay";
-        }else{
-            while(!vowel){
-                result = result.substring(1, result.length()) + result.substring(0,1);
-                String first1 = result.substring(0,1);
-                vowel = first1.equals("a") || first1.equals("A") || first1.equals("e") || first1.equals("E") || first1.equals("i") || first1.equals("I") || first1.equals("o") || first1.equals("O") || first1.equals("u") || first1.equals("U");
+        while(sc.hasNext()){
+            result = sc.next();
+            first = input.substring(0,1);
+            vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals("i") || first.equals("I") || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
+            if(vowel){
+                result += "ay";
+            }else{
+                while(!vowel){
+                    result = result.substring(1, result.length()) + result.substring(0,1);
+                    String first1 = result.substring(0,1);
+                    vowel = first1.equals("a") || first1.equals("A") || first1.equals("e") || first1.equals("E") || first1.equals("i") || first1.equals("I") || first1.equals("o") || first1.equals("O") || first1.equals("u") || first1.equals("U");
+                }
+                result += "ay";
             }
-            result += "ay";
+            finalResult += result;
         }
+        sc.close();
+        
         //Check for capitalization
         if(first.compareTo(" ") + 32 <97){
             result = capitalization(input, result);
