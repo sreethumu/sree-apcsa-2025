@@ -31,7 +31,7 @@ public class PigLatinTranslator {
     private static String translateWord(String input) {
         System.out.println("  -> translateWord('" + input + "')");
 
-        String result = input;
+        String result = input.trim();
         if(result.length()==0){
             return result;
         }
@@ -42,7 +42,7 @@ public class PigLatinTranslator {
         //Translate
         while(sc.hasNext()){
             result = sc.next();
-            first = input.substring(0,1);
+            first = result.substring(0,1);
             vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals("i") || first.equals("I") || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
             if(vowel){
                 result += "ay";
@@ -54,13 +54,20 @@ public class PigLatinTranslator {
                 }
                 result += "ay";
             }
+            System.out.println(result);
             finalResult += result;
+        }
+        for(int i = 0; i<finalResult.length()-2; i++){
+            String ay = finalResult.substring(i,i+2);
+            if(ay.equals("ay")){
+                finalResult = finalResult.substring(0,i+2) + " " + finalResult.substring(i+2);
+            }
         }
         sc.close();
         
         //Check for capitalization
         if(first.compareTo(" ") + 32 <97){
-            result = capitalization(input, result);
+            finalResult = capitalization(input, finalResult);
         }
         
 
@@ -72,7 +79,7 @@ public class PigLatinTranslator {
         // This is the first place to work.
         // delete this line
 
-        return result;
+        return finalResult;
     }
 
     private static String capitalization(String input, String result){
