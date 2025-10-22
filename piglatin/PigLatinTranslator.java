@@ -10,6 +10,7 @@ public class PigLatinTranslator {
         // input book.
         // Curent do-nothing code will return an empty book.
         // Your code will need to call translate(String input) many times.
+       
 
         return translatedBook;
     }
@@ -36,7 +37,11 @@ public class PigLatinTranslator {
             return result;
         }
         String first = input.substring(0,1);
-        boolean vowel = first.equals("a") || first.equals("A") || first.equals("e") || first.equals("E") || first.equals("i") || first.equals("I") || first.equals("o") || first.equals("O") || first.equals("u") || first.equals("U");
+        boolean vowel;
+        boolean convertUpper = false;
+        if(first.compareTo(" ") + 32 <97){
+            convertUpper=true;
+        }
         Scanner sc = new Scanner(input);
         String finalResult = "";
         //Translate
@@ -47,6 +52,9 @@ public class PigLatinTranslator {
             if(vowel){
                 result += "ay";
             }else{
+                result = result.substring(0,1).toLowerCase() + result.substring(1, result.length());
+                //System.out.println(result.substring(0,1));
+                //convertUpper=true;
                 while(!vowel){
                     result = result.substring(1, result.length()) + result.substring(0,1);
                     String first1 = result.substring(0,1);
@@ -54,7 +62,6 @@ public class PigLatinTranslator {
                 }
                 result += "ay";
             }
-            System.out.println(result);
             finalResult += result;
         }
         for(int i = 0; i<finalResult.length()-2; i++){
@@ -66,8 +73,14 @@ public class PigLatinTranslator {
         sc.close();
         
         //Check for capitalization
-        if(first.compareTo(" ") + 32 <97){
-            finalResult = capitalization(input, finalResult);
+        if(convertUpper){
+            finalResult = finalResult.substring(0,1).toUpperCase() + finalResult.substring(1,finalResult.length());
+            System.out.println(finalResult);
+            int period = finalResult.indexOf(".");
+            if(period > 0){
+                finalResult = finalResult.substring(0,period) + finalResult.substring(period + 1, finalResult.length()) + ".";
+            }
+            //finalResult = finalResult.substring(0,finalResult.indexOf(first.toUpperCase())) +  first.lowerCase;
         }
         
 
@@ -82,7 +95,7 @@ public class PigLatinTranslator {
         return finalResult;
     }
 
-    private static String capitalization(String input, String result){
+    /*private static String capitalization(String input, String result){
         for(int i=0; i<input.length(); i++){
             String letter = result.substring(i, i+1);
             int ascii = letter.compareTo(" ") + 32;
@@ -100,7 +113,7 @@ public class PigLatinTranslator {
             result = result.substring(0,period) + result.substring(period + 1, result.length()) + ".";
         }
         return result;
-    }
+    }*/
 
     // Add additonal private methods here.
     // For example, I had one like this:
