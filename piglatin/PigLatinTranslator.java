@@ -75,12 +75,13 @@ public class PigLatinTranslator {
         //Check for capitalization
         if(convertUpper){
             finalResult = finalResult.substring(0,1).toUpperCase() + finalResult.substring(1,finalResult.length());
-            System.out.println(finalResult);
-            int period = finalResult.indexOf(".");
-            if(period > 0){
-                finalResult = finalResult.substring(0,period) + finalResult.substring(period + 1, finalResult.length()) + ".";
-            }
+            //System.out.println(finalResult);
+            
             //finalResult = finalResult.substring(0,finalResult.indexOf(first.toUpperCase())) +  first.lowerCase;
+        }
+        int period = finalResult.indexOf(".");
+        if(period > 0){
+            finalResult = finalResult.substring(0,period) + finalResult.substring(period + 1, finalResult.length()) + ".";
         }
         
 
