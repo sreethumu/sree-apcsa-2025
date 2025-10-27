@@ -10,7 +10,7 @@ public class PigLatinTranslator {
         // input book.
         // Curent do-nothing code will return an empty book.
         // Your code will need to call translate(String input) many times.
-       
+      
 
         return translatedBook;
     }
@@ -19,7 +19,10 @@ public class PigLatinTranslator {
         System.out.println("  -> translate('" + input + "')");
 
         String result = "";
-        
+        Scanner scan = new Scanner(input);
+        while(scan.hasNextLine()){
+            String line = scan.nextLine();
+        }
         // TODO: translate a string input, store in result.
         // The input to this function could be any English string.
         // It may be made up of many words.
