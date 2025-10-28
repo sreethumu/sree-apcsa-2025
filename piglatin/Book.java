@@ -71,9 +71,9 @@ public class Book {
             // TODO: use Scanner to populate the book
             // Scanner can open a file on a URL like this:
             Scanner scan = new Scanner(bookUrl.openStream());
-            String book = "";
             while (scan.hasNextLine()){
-                book += scan.next();
+                String newLine = scan.nextLine();
+                text.add(newLine);
             }
             scan.close();
             // Scanner(bookUrl.openStream())
@@ -86,7 +86,17 @@ public class Book {
     void writeToFile(String name) {
         // TODO: Add code here to write the contents of the book to a file.
         // Must write to file using provided name.
-        PrintStream filePrintStream = null;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(title + ".txt", true))){
+            for(int i=0;i<text.size();i++){
+                writer.write(text.get(i));
+                writer.newLine();
+            }
+        } catch(IOException ex){
+            ex.printStackTrace();
+        }
+
+        //Anish code
+        /*PrintStream filePrintStream = null;
         try {
             filePrintStream = new PrintStream(name);
             for(String str : text){
@@ -98,6 +108,6 @@ public class Book {
             if (filePrintStream != null) {
                 filePrintStream.close();
             }
-        }
+        }*/
     }
 }
