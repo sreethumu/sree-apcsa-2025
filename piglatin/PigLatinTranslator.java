@@ -40,6 +40,7 @@ public class PigLatinTranslator {
         return result;
     }
 
+    @SuppressWarnings("resource")
     private static String translateWord(String input) {
         System.out.println("  -> translateWord('" + input + "')");
 
@@ -50,10 +51,13 @@ public class PigLatinTranslator {
         String vowel = "aeiouAEIOU";
         Scanner sc = new Scanner(input);
         String finalResult = "";
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        
+
 
         while(sc.hasNext()){
             result = sc.next();
-            System.out.println(result);
+            //System.out.println(result);
             char first = result.charAt(0);
             int initialLength = result.length();
             int indexOfVowel = 0;
@@ -61,6 +65,9 @@ public class PigLatinTranslator {
                 result += "ay";
             }else{
                 for(int i=0; indexOfVowel==0; i++){
+                    if(i==result.length()){
+                        break;
+                    }
                     String letter = result.substring(i,i+1);
                     if(vowel.indexOf(letter)>-1){
                         indexOfVowel = i;
@@ -74,6 +81,9 @@ public class PigLatinTranslator {
             }
             if(result.indexOf(".")>-1){
                 result = result.substring(0,result.indexOf(".")) + result.substring(result.indexOf(".") + 1) + ".";
+            }
+            if(result.indexOf(",")>-1){
+                result = result.substring(0,result.indexOf(",")) + result.substring(result.indexOf(",") + 1) + ",";
             }
             
             finalResult += result;

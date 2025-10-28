@@ -40,6 +40,7 @@ public class App {
 
         input.printlines(0,10);
         System.out.println(input);
+        System.out.println(input.getTitle());
         Book output = PigLatinTranslator.translate(input);
         output.printlines(0,10);
         output.writeToFile("test.txt");
