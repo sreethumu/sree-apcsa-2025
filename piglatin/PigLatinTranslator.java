@@ -5,18 +5,24 @@ import java.util.Scanner;
 public class PigLatinTranslator {
     public static Book translate(Book input) {
         Book translatedBook = new Book();
-        translateWord(translatedBook);
+        for(int i=0;i<input.getLineCount();i++){
+            String translatedLine = translate(input.getLine(i));
+            System.out.println(translatedLine);
+            translatedBook.appendLine(translatedLine);
+        }
+        
+        //System.out.println(input.getLine(4));
         // TODO: Add code here to populate translatedBook with a translation of the
         // input book.
         // Curent do-nothing code will return an empty book.
-        // Your code will need to call translate(String input) many times.
+        // Your code will need to call translate(String input) many times. --> loop
       
-
+        System.out.println("Final Translation: " + translatedBook);
         return translatedBook;
     }
 
     public static String translate(String input) {
-        System.out.println("hiiii");
+        //System.out.println("hiiii");
         System.out.println("  -> translate('" + input + "')");
 
         String result = "";
@@ -41,10 +47,54 @@ public class PigLatinTranslator {
         if(result.length()==0){
             return result;
         }
-        String first = input.substring(0,1);
-        boolean vowel;
-        boolean convertUpper = false;
-        if(first.compareTo(" ") + 32 <97){
+        String vowel = "aeiouAEIOU";
+        Scanner sc = new Scanner(input);
+        String finalResult = "";
+
+        while(sc.hasNext()){
+            result = sc.next();
+            System.out.println(result);
+            char first = result.charAt(0);
+            int initialLength = result.length();
+            int indexOfVowel = 0;
+            if(vowel.indexOf(first)>-1){
+                result += "ay";
+            }else{
+                for(int i=0; indexOfVowel==0; i++){
+                    String letter = result.substring(i,i+1);
+                    if(vowel.indexOf(letter)>-1){
+                        indexOfVowel = i;
+                    }
+                }
+                result = result.substring(indexOfVowel) + result.substring(0,indexOfVowel) + "ay";
+                int indexOfCons = initialLength - indexOfVowel;
+                if(Character.isUpperCase(first)){
+                    result = result.substring(0,1).toUpperCase() + result.substring(1,indexOfCons) + result.substring(indexOfCons,indexOfCons+1).toLowerCase() + result.substring(indexOfCons+1);
+                }
+            }
+            if(result.indexOf(".")>-1){
+                result = result.substring(0,result.indexOf(".")) + result.substring(result.indexOf(".") + 1) + ".";
+            }
+            
+            finalResult += result;
+            if(sc.hasNext()){
+                finalResult += " ";
+            }
+        }
+        //Add spaces between multiple words
+        sc.close();      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*if(first.compareTo(" ") + 32 <97){
             convertUpper=true;
         }
         Scanner sc = new Scanner(input);
@@ -67,6 +117,9 @@ public class PigLatinTranslator {
                 }
                 result += "ay";
             }
+            if(first.compareTo(" ") + 32 <97){
+                result = checkCaps(first, result);
+            }
             finalResult += result;
         }
         for(int i = 0; i<finalResult.length()-2; i++){
@@ -78,16 +131,16 @@ public class PigLatinTranslator {
         sc.close();
         
         //Check for capitalization
-        if(convertUpper){
+        /*if(convertUpper){
             finalResult = finalResult.substring(0,1).toUpperCase() + finalResult.substring(1,finalResult.length());
             //System.out.println(finalResult);
             
             //finalResult = finalResult.substring(0,finalResult.indexOf(first.toUpperCase())) +  first.lowerCase;
-        }
-        int period = finalResult.indexOf(".");
+        }*/
+        /*int period = finalResult.indexOf(".");
         if(period > 0){
             finalResult = finalResult.substring(0,period) + finalResult.substring(period + 1, finalResult.length()) + ".";
-        }
+        }*/
         
 
         
@@ -101,6 +154,11 @@ public class PigLatinTranslator {
         return finalResult;
     }
 
+    //Check capitalization
+    private static String checkCaps(String first, String result){
+        String result1 = first.toUpperCase() + result.substring(0,result.length());
+        return result1;
+    }
     /*private static String capitalization(String input, String result){
         for(int i=0; i<input.length(); i++){
             String letter = result.substring(i, i+1);
