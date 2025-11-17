@@ -4,9 +4,10 @@ public class App {
 
     public static void main(String[] args) {
 
-        CardTable table = new CardTable();
+        //CardTable table = new CardTable();
 
-        table.startPlaying();
+        //table.startPlaying();
+        Deck d = new Deck();
+        d.shuffle();
     }
-
 }
