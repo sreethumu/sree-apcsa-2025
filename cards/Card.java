@@ -16,7 +16,6 @@ public class Card {
     }
 
     public String toString(){
-        //return "" + SUITES[suite] + VALUES[value];
-        return "working";
+        return "" + SUITES[suite] + VALUES[value];
     }
 }

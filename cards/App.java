@@ -7,7 +7,9 @@ public class App {
         //CardTable table = new CardTable();
 
         //table.startPlaying();
-        Deck d = new Deck();
-        d.shuffle();
+        //System.out.println("draw");
+        Deck x = new Deck();
+        //x.shuffle();
+        System.out.println(x.draw());
     }
 }
