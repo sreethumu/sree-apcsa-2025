@@ -1,4 +1,5 @@
 package cards;
+import java.util.Random;
 
 public class Deck {
 
@@ -20,10 +21,11 @@ public class Deck {
     public void shuffle(){
         int min = 0;
         int max = 51;
-        for(int i = 0; i<=51; i++){
-            int randomCard = (int)(Math.random() * ((max - min) + 1) + min);
+        for(int i = deck.length-1; i>0; i--){
+            int randomCard = (int)(Math.random() * ((i - min) + 1) + min);
+            Card initial = deck[i];
             deck[i] = deck[randomCard];
-            deck[randomCard] = deck[i];
+            deck[randomCard] = initial;
         }
     }
 
@@ -39,17 +41,19 @@ public class Deck {
 
     public void print(int x){
         String printCards = "";
-        for(int i = 0; i<=x; i++){
-            printCards += deck[i].toString() + " ";
+        for(int i = 0; i<x; i++){
+            printCards += deck[i+cardDrawn].toString() + " ";
         }
         System.out.println(printCards);
     }
 
     public void cut(int numCardsToCut){
         for(int i = 0; i<numCardsToCut; i++){
-            for(int j = 0; j<52; j++){
+            Card firstCard = deck[0];
+            for(int j = 1; j<52; j++){
                 deck[j-1] = deck[j];
             }
+            deck[51] = firstCard;
         }
     }
 
