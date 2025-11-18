@@ -8,8 +8,7 @@ public class App {
 
         //table.startPlaying();
         //System.out.println("draw");
-        Deck x = new Deck();
+        
         //x.shuffle();
-        System.out.println(x.draw());
     }
 }

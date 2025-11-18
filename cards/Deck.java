@@ -4,19 +4,16 @@ public class Deck {
 
     private Card[] deck = new Card[52];
     private int cardDrawn = 0;
-    int fillCards = 0;
+    private int fillCards = 0;
 
     public Deck(){
         for(int i=0; i<4; i++){
             for(int j=0; j<=12; j++){
                 Card newCard = new Card(i,j);
-                for(int u =0; u<=51; u++){
-                    if(deck[u]!=null){
-                        deck[u] = newCard;
-                    }
-                }
+                deck[fillCards]=newCard;
+                fillCards++;
             }
-            fillCards++;
+            
         }
     }
 
@@ -40,5 +37,12 @@ public class Deck {
         }
     }
 
+    public void print(int x){
+        String printCards = "";
+        for(int i = 0; i<=x; i++){
+            printCards += deck[i].toString() + " ";
+        }
+        System.out.print(printCards);
+    }
 
 }
