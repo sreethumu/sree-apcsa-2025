@@ -23,7 +23,7 @@ public class Deck {
         for(int i = 0; i<=51; i++){
             int randomCard = (int)(Math.random() * ((max - min) + 1) + min);
             deck[i] = deck[randomCard];
-            min++;
+            deck[randomCard] = deck[i];
         }
     }
 
@@ -42,7 +42,15 @@ public class Deck {
         for(int i = 0; i<=x; i++){
             printCards += deck[i].toString() + " ";
         }
-        System.out.print(printCards);
+        System.out.println(printCards);
+    }
+
+    public void cut(int numCardsToCut){
+        for(int i = 0; i<numCardsToCut; i++){
+            for(int j = 0; j<52; j++){
+                deck[j-1] = deck[j];
+            }
+        }
     }
 
 }
