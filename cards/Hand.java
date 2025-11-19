@@ -4,12 +4,12 @@ public class Hand {
 
     private int max;
     private int addCardNum = 0;
+    private Card[] hand;
 
     public Hand(int x){
-        max = x;
+        hand = new Card[x];
     }
     
-    private Card[] hand = new Card[max];
     
     public void add(Card x){
         hand[addCardNum] = x;
@@ -49,7 +49,7 @@ public class Hand {
     public String toString(){
         String handString = "";
         for(int i = 0; i<max; i++){
-            handString += hand[i].toString();
+            handString += "" + hand[i].toString();
         }
         return handString;
     }
