@@ -4,21 +4,30 @@ public class SelectionSort implements Sorter {
 
     public void sort(int[] input) {
         for(int i=0; i<input.length; i++){
-            int min=input[i];
-            int temp;
-            //find smallest value
-            for(int j=i; j<input.length; j++){
-                if(input[j]<min){
-                    min=input[j];
+            int max=input[0];
+            int indexOf=0;
+            //find biggest value
+            for(int j=0; j<input.length-i; j++){
+                if(input[j]>max){
+                    max=input[j];
+                    indexOf=j;
                 }
             }
             //shift the array
-            for(int k=0; k<input.length-1; k++){
-                input[k+1] = input[k];
+            System.out.print(max + "   ");
+            System.out.println(indexOf);
+            for(int k=indexOf; k<input.length-i; k++){
+                if(input.length-i-1==k){
+                    input[k]=max;
+                }else{
+                    input[k]=input[k+1];
+                }
             }
-            input[0]=min;
         }
-        System.out.println(input);
+        System.out.println();
+        for(int i: input){
+            System.out.print(i+", ");
+        }
         System.out.println("Selection Sort!!!");
     }
 }
