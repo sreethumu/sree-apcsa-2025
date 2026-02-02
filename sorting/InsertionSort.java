@@ -3,31 +3,21 @@ package sorting;
 public class InsertionSort implements Sorter {
 
     public void sort(int[] input) {
-        boolean moreSwaps=true;
-        int temp;
         for(int i=1; i<input.length; i++){
+            //System.out.println(i);
             int key=input[i];
-            boolean swapped=true;
-            for(int j=i-1; swapped; j--){
-                swapped=false;
-                System.out.println("running");
-                if(key<input[j]){
-                    temp=input[j];
-                    input[j]=key;
-                    input[i]=temp;
-                    swapped=true;
-                }else{
-                    swapped=false;
+            for(int j=i-1; j>=0; j--){
+                int compareTo=input[j];
+                if(compareTo>key){
+                    int temp=input[j];
+                    input[j]=input[j+1];
+                    input[j+1]=temp;
                 }
             }
-            for(int o:input){
-                System.out.print(o+", ");
-            }
-            System.out.println();
         }
-        for(int i:input){
-            System.out.print(i+", ");
+        
+        for(int num:input){
+            System.out.print(num + ", ");
         }
-    }
 }
 
