@@ -21,3 +21,5 @@ public class InsertionSort implements Sorter {
         }
 }
 
+}
+
