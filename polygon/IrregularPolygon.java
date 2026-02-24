@@ -33,27 +33,21 @@ public class IrregularPolygon {
     public double area() {
         // TODO: Calculate the area.
         Double area = 0.0;
-        ArrayList<Double> firstCross = new ArrayList<Double>();
-        ArrayList<Double> secondCross = new ArrayList<Double>();
-        int a=0;
-        int b=0;
+        double firstCross=0;
+        double secondCross=0;
         //find values
         for(int i=0; i<myPolygon.size(); i++){
             if(i<myPolygon.size()-1){
-                firstCross.add(myPolygon.get(i).getX() * myPolygon.get(i+1).getY());
-                secondCross.add(myPolygon.get(i).getY() * myPolygon.get(i+1).getX());
+                firstCross+=myPolygon.get(i).getX() * myPolygon.get(i+1).getY();
+                secondCross+=myPolygon.get(i).getY() * myPolygon.get(i+1).getX();
             }else{
-                firstCross.add(myPolygon.get(i).getX() * myPolygon.get(0).getY());
-                secondCross.add(myPolygon.get(i).getY() * myPolygon.get(0).getX());
+                firstCross+=myPolygon.get(i).getX() * myPolygon.get(0).getY();
+                secondCross+=myPolygon.get(i).getY() * myPolygon.get(0).getX();
             }
         }
         
         //calculate area
-        for(int i=0; i<firstCross.size(); i++){
-            a+=firstCross.get(i);
-            b+=secondCross.get(i);
-        }
-        area = (double) Math.abs(a-b) / 2;
+        area = (double) Math.abs(firstCross-secondCross) / 2;
         return area;
     }
 
