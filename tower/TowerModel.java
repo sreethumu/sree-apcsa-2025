@@ -7,7 +7,7 @@ public class TowerModel {
 
     // Final tower height
     private int towerHeight = 0;
-
+ 
     // Debug metrics
     private int printCounter = 0;
     private int moveCounter = 0;
@@ -47,7 +47,17 @@ public class TowerModel {
 
     // Move one disk from the source stack to the destination stack.
     public void move(int source, int destination)
-    {
+    {   
+        int disk = towers[source].peek();
+        towers[source].pop();
+        if(disk>0 && (disk < towers[destination].peek() || towers[destination].peek()==0)){
+            towers[destination].push(disk);
+        } else {
+            System.out.println("Invalid move from " + source + " to " + destination);
+            towers[source].push(disk);
+            return;
+        }
+            
         System.out.println("Move #" + ++moveCounter + " from " + source + " to " + destination);
         // TODO!!
     }
